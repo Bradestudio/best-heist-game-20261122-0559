@@ -178,6 +178,8 @@ export function createWorld(random) {
 
   function stepGuard(guard, dt, events) {
     const player = state.player;
+    const startX = guard.x;
+    const startY = guard.y;
     const sneakFactor = state.playerSneaking ? 0.55 : 1;
     const seen = observerSeesPlayer(
       guard.x, guard.y, guard.angle, GUARD_VIEW_DISTANCE * sneakFactor, GUARD_VIEW_HALF_ANGLE,
@@ -256,6 +258,23 @@ export function createWorld(random) {
         guard.angle = Math.atan2(dy, dx);
         moveWithWalls(guard, (dx / distance) * speed, (dy / distance) * speed, 12, state.walls);
       }
+    }
+    // Stuck recovery: a guard wedged in a wall corner while investigating,
+    // chasing or returning gives up instead of standing there forever.
+    const movedDistance = Math.hypot(guard.x - startX, guard.y - startY);
+    if (movedDistance < 0.5 && guard.mode !== GUARD_SUSPICIOUS && guard.pauseTimer <= 0) {
+      guard.stuckTimer = (guard.stuckTimer || 0) + dt;
+      if (guard.stuckTimer > 1.5) {
+        guard.stuckTimer = 0;
+        if (guard.mode === GUARD_PATROL) {
+          guard.waypointIndex = (guard.waypointIndex + 1) % guard.waypoints.length;
+        } else {
+          guard.mode = GUARD_PATROL;
+          guard.lastSeen = null;
+        }
+      }
+    } else {
+      guard.stuckTimer = 0;
     }
     return events;
   }

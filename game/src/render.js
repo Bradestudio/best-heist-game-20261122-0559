@@ -265,7 +265,7 @@ function drawHud(context, state) {
   context.fillStyle = '#9fb4d8';
   context.font = FONT_SMALL;
   context.textAlign = 'right';
-  context.fillText(`ASAP x${state.smokesLeft}  [SPASI]`, 1216, 50);
+  context.fillText(`ASAP x${state.smokesLeft}  [SPASI]`, 1216, 60);
   context.fillStyle = '#ffffff';
   context.textAlign = 'left';
   state.grades.forEach((grade, index) => {
@@ -326,7 +326,7 @@ export function createRenderer(canvas) {
       drawCenterPanel(context, 'JEDA', ['Tekan P atau Esc untuk lanjut.', 'Tekan ENTER untuk mulai ulang level.'], '#9fb4d8');
     } else if (screen === SCREEN_CAUGHT) {
       drawCenterPanel(context, 'KETAHUAN!', [
-        `Alarm mencapai 100% di ${LEVELS[state.levelIndex].name}.`,
+        `Kamu ketahuan di ${LEVELS[state.levelIndex].name}.`,
         'Tekan ENTER untuk mencoba lagi level ini.',
       ], '#e74c3c');
     } else if (screen === SCREEN_COMPLETE) {
