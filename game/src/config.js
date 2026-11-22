@@ -1,0 +1,26 @@
+// Shared constants for VELMORA HEIST: canvas size, movement, vision and alarm tuning.
+export const VIEW_WIDTH = 1280;
+export const VIEW_HEIGHT = 720;
+export const HUD_HEIGHT = 64;
+export const STEP = 1 / 60;
+export const PLAYER_RADIUS = 13;
+export const PLAYER_WALK_SPEED = 150;
+export const PLAYER_SNEAK_SPEED = 82;
+export const GUARD_SPEED_PATROL = 62;
+export const GUARD_SPEED_CHASE = 118;
+export const GUARD_VIEW_DISTANCE = 250;
+export const GUARD_VIEW_HALF_ANGLE = 0.52;
+export const CAMERA_VIEW_DISTANCE = 235;
+export const CAMERA_VIEW_HALF_ANGLE = 0.42;
+export const CAMERA_SWEEP_SPEED = 0.55;
+export const ALARM_MAX = 100;
+export const ALARM_RISE_GUARD = 34;
+export const ALARM_RISE_CAMERA = 22;
+export const ALARM_DECAY = 4.5;
+export const ALARM_SUSPICIOUS = 25;
+export const ALARM_SPOTTED = 60;
+export const SMOKE_COST = 150;
+export const SMOKE_RADIUS = 130;
+export const SMOKE_SECONDS = 5;
+export const BEST_KEY = 'velmora-heist-best';
+export const TOOL_SMOKE = 'smoke';
